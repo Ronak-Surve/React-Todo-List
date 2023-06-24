@@ -1,9 +1,9 @@
 import './App.css';
-import Header from './MyComponents/Header';
-import Todos from './MyComponents/Todos';
-import Footer from './MyComponents/Footer';
+import Header from './Header';
+import Todos from './Todos';
+// import Footer from './Footer';
 import React, { useState } from 'react';
-import AddTodo from './MyComponents/AddTodo';
+import AddTodo from './AddTodo';
 
 function App() {
 

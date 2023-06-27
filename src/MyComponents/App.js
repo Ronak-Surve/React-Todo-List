@@ -2,10 +2,18 @@ import './App.css';
 import Header from './Header';
 import Todos from './Todos';
 // import Footer from './Footer';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddTodo from './AddTodo';
 
 function App() {
+
+  let initTodo;
+  if(localStorage.getItem("todos")===null) {
+    initTodo = [];
+  }
+  else  {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
 
   const onDelete = (todo) =>  {
     console.log("please delete",todo)
@@ -16,6 +24,7 @@ function App() {
     setTodos(todos.filter((e) => {
       return e !== todo;
     }))
+
   }
 
   const addTodo = (title,desc) => {
@@ -34,8 +43,15 @@ function App() {
       desc : desc,
     }
     setTodos([...todos,myTodo]);
+
   }
-  const [todos, setTodos] = useState([]);
+  
+  const [todos, setTodos] = useState(initTodo);
+
+  useEffect(() => {
+      localStorage.setItem("todos",JSON.stringify(todos));
+  },[todos])
+
   return (
     <>
       <Header title= "My Todos List" searchbar = {false}/>
